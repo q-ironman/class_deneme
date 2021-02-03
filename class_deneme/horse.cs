@@ -14,5 +14,6 @@ namespace class_deneme
         public PictureBox picture = new PictureBox();
         public Point startLoc = new Point();
         public int speed;
+        public int score;
     }
 }

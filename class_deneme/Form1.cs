@@ -113,7 +113,11 @@ namespace class_deneme
             {
                 hors[i].picture.Left += hors[i].speed;
                 if (hors[i].picture.Left + hors[i].picture.Width >= picBox_finishLine.Left)
+                {
                     timer1.Stop();
+                    CalScore();
+
+                }
             }
 
 
@@ -125,7 +129,40 @@ namespace class_deneme
             {
                 hors[i].picture.Visible = false;
                 hors[i].picture.Location = hors[i].startLoc;
+                hors[i].score = 0;
             }
+            scoreBoard.Text = "";
+        }
+        private void CalScore()
+        {
+            int cnt = 0;
+            scoreBoard.AppendText("Scores\r\n");
+            for (int i = 0; i<horseNum;i++)
+            {
+                for(int ii = 0; ii<horseNum; ii++)
+                {
+                    if(hors[i].picture.Left > hors[ii].picture.Left)
+                    {
+                        cnt++;
+                    }
+                }
+                if(cnt == horseNum-1)
+                {
+                    hors[i].score = 50;
+                    scoreBoard.AppendText(String.Format("Number {0}: {1}\r\n", i + 1, hors[i].score));
+                }
+                else if (cnt == horseNum-2)
+                {
+                    hors[i].score = 40;
+                    scoreBoard.AppendText(String.Format("Number {0}: {1}\r\n", i + 1, hors[i].score));
+                }
+                else
+                {
+                    hors[i].score = 0;
+                }
+                cnt = 0;
+            }
+            
         }
         
     }
