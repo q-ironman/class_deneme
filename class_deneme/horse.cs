@@ -15,5 +15,6 @@ namespace class_deneme
         public Point startLoc = new Point();
         public int speed;
         public int score;
+        public string name;
     }
 }

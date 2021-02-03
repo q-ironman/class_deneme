@@ -27,6 +27,7 @@ namespace class_deneme
             for(int i = 0; i<5;i++)
             {
                 hors[i] = new horse();
+                hors[i].name = String.Format("Horse number {0}", i + 1);                
             }
             hors[0].picture = picBox_horse1;
             hors[0].startLoc = picBox_horse1.Location;
@@ -116,7 +117,6 @@ namespace class_deneme
                 {
                     timer1.Stop();
                     CalScore();
-
                 }
             }
 
@@ -135,33 +135,30 @@ namespace class_deneme
         }
         private void CalScore()
         {
-            int cnt = 0;
+            horse tmp = new horse();
             scoreBoard.AppendText("Scores\r\n");
             for (int i = 0; i<horseNum;i++)
             {
-                for(int ii = 0; ii<horseNum; ii++)
+                for(int ii = i+1; ii<horseNum; ii++)
                 {
-                    if(hors[i].picture.Left > hors[ii].picture.Left)
+                    
+                    if(hors[i].picture.Left < hors[ii].picture.Left)
                     {
-                        cnt++;
+                        tmp = hors[i];
+                        hors[i] = hors[ii];
+                        hors[ii] = tmp;
                     }
+
                 }
-                if(cnt == horseNum-1)
-                {
-                    hors[i].score = 50;
-                    scoreBoard.AppendText(String.Format("Number {0}: {1}\r\n", i + 1, hors[i].score));
-                }
-                else if (cnt == horseNum-2)
-                {
-                    hors[i].score = 40;
-                    scoreBoard.AppendText(String.Format("Number {0}: {1}\r\n", i + 1, hors[i].score));
-                }
-                else
-                {
-                    hors[i].score = 0;
-                }
-                cnt = 0;
+                
             }
+            hors[0].score = 50;
+            hors[1].score = 40;
+            for(int i = 0; i<2;i++)
+            {
+                scoreBoard.AppendText(String.Format("{0}: {1}\r\n",hors[i].name,hors[i].score));
+            }
+
             
         }
         
