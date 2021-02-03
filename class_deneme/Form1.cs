@@ -14,6 +14,7 @@ namespace class_deneme
     {
         Random rndm = new Random();
         int horseNum = 2;
+        //bool firstClick = true;
         horse[] hors = new horse[5];
         public Form1()
         {
@@ -46,42 +47,50 @@ namespace class_deneme
         private void UpDown_horseNum_ValueChanged(object sender, EventArgs e)
         {
             horseNum = Convert.ToInt32(UpDown_horseNum.Value);
-            for(int i = 0; i < horseNum; i++)
+            for(int i = 0; i < 5; i++)
             {
-                hors[i].IsInRace = true;
+                if(i<horseNum)
+                {
+                    hors[i].IsInRace = true;
+                }
+                else
+                {
+                    hors[i].IsInRace = false;
+                }
             }
         }
 
         private void button_start_Click(object sender, EventArgs e)
         {
-            /*if(firstClick == true)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    if (hors[i].IsInRace)
-                    {
-                        hors[i].picture.Visible = true;
-                        hors[i].speed = rndm.Next(10, 40);
-                    }
-                    else
-                    {
-                        hors[i].picture.Visible = false;
-                    }
+            //if(firstClick == true)
+            //{
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        if (hors[i].IsInRace)
+            //        {
+            //            hors[i].picture.Visible = true;
+            //            hors[i].speed = rndm.Next(10, 40);
+            //        }
+            //        else
+            //        {
+            //            hors[i].picture.Visible = false;
+            //        }
 
-                }
-                timer1.Start();
-                firstClick = false;
-            }
-            else if(firstClick == false)
-            {
-                firstClick = true;
-                for(int i = 0; i < 5; i++)
-                {
+            //    }
+            //    timer1.Start();
+            //    firstClick = false;
+            //}
+            //else if(firstClick == false)
+            //{
 
-                    hors[i].picture.Visible = false;
-                    hors[i].picture.Location = hors[i].startLoc;
-                }
-            }*/
+            //    for(int i = 0; i < 5; i++)
+            //    {
+
+            //        hors[i].picture.Visible = false;
+            //        hors[i].picture.Location = hors[i].startLoc;
+            //    }
+            //    firstClick = true;
+            //}
             for (int i = 0; i < 5; i++)
             {
                 if (hors[i].IsInRace)
@@ -118,5 +127,6 @@ namespace class_deneme
                 hors[i].picture.Location = hors[i].startLoc;
             }
         }
+        
     }
 }
